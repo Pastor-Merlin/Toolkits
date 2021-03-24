@@ -13,6 +13,6 @@ public class TestSample : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(string.Format("<color=#ff0000>{0}</color>", "lustianshun"));
+        Debug.Log(string.Format("<color=#ff0000>{0}</color>", "lustianshun...."));
     }
 }
