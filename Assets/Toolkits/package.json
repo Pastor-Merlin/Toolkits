@@ -1,0 +1,23 @@
+{
+  "name": "pastor.merlin.toolkits",
+  "version": "0.0.0",
+  "displayName": "Toolkits",
+  "description": "This is an example package",
+  "unity": "2019.4",
+  "dependencies": {},
+  "keywords": [
+    "toolkits"
+  ],
+  "author": {
+    "name": "Merlin",
+    "email": "lustianshun@gmail.com",
+    "url": ""
+  },
+  "samples": [
+    {
+      "displayName": "Examples",
+      "description": "Scripts showing how to create and modify meshes at runtime.",
+      "path": "Samples~/Examples"
+    }
+  ]
+}
