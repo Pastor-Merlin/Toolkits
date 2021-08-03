@@ -9,13 +9,25 @@ namespace Toolkits.Editor
 {
     public static class ToolsMenu
     {
-        [MenuItem("Tools/Clear All PlayerPrefs")]
+        [MenuItem("Tools/Menu/RemoveMissingScript")]
+        static void RemoveMissingScript()
+        {
+            Transform[] transforms = Selection.transforms;
+            int nOpCommondAmount = 0;
+            foreach (var go in transforms)
+            {
+                RemoveRecursively(go.gameObject, ref nOpCommondAmount);
+            }
+            Debug.LogFormat("RemoveMissingScript:{0}", nOpCommondAmount);
+        }
+
+        [MenuItem("Tools/Menu/Clear All PlayerPrefs")]
         private static void ClearAllPlayerPrefs()
         {
             PlayerPrefs.DeleteAll();
         }
 
-        [MenuItem("Tools/Align With Ground %t")]
+        [MenuItem("Tools/Menu/Align With Ground %t")]
         private static void AlignWithGround()
         {
             Transform[] transforms = Selection.transforms;
@@ -40,7 +52,7 @@ namespace Toolkits.Editor
         }
 
 #if UNITY_2018_1_OR_NEWER
-        [MenuItem("Tools/List Player Assemblies in Console")]
+        [MenuItem("Tools/Menu/List Player Assemblies in Console")]
         public static void PrintAssemblyNames()
         {
             UnityEngine.Debug.Log("== Player Assemblies ==");
@@ -54,7 +66,7 @@ namespace Toolkits.Editor
         }
 #endif
 
-        [MenuItem("Tools/Check Prototype References")]
+        [MenuItem("Tools/Menu/Check Prototype References")]
         private static void CheckprototypeReferences()
         {
             string prototypePath = EditorUtility.OpenFolderPanel("Choose folder", Application.dataPath, "");
@@ -101,6 +113,18 @@ namespace Toolkits.Editor
                         }
                     }
                 }
+            }
+        }
+
+        public static void RemoveRecursively(GameObject g, ref int nOpCommondAmount)
+        {
+            int nRemoveNumber = GameObjectUtility.RemoveMonoBehavioursWithMissingScript(g);
+            if (nRemoveNumber > 0)
+                nOpCommondAmount++;
+
+            foreach (Transform childT in g.transform)
+            {
+                RemoveRecursively(childT.gameObject, ref nOpCommondAmount);
             }
         }
     }

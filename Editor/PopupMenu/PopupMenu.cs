@@ -7,7 +7,7 @@ namespace Toolkits.Editor
     public class PopupMenu
     {
         [MenuItem("Window/MyHierarchyMenu/RemoveMissingScript")]
-        static void RemoveMissingScript()
+        static void RemoveMissingScript1()
         {
             Transform[] transforms = Selection.transforms;
             int nOpCommondAmount = 0;
@@ -18,8 +18,8 @@ namespace Toolkits.Editor
             Debug.LogFormat("RemoveMissingScript:{0}", nOpCommondAmount);
         }
 
-        [MenuItem("Window/MyProject/MyTest")]
-        static void MyTest()
+        [MenuItem("Window/MyProjectMenu/RemoveMissingScript")]
+        static void RemoveMissingScript2()
         {
             var activeObject = Selection.activeObject;
             if (activeObject != null && activeObject is GameObject)
@@ -67,7 +67,7 @@ namespace Toolkits.Editor
                 Event.current.control)
             {
                 Vector2 mousePosition = Event.current.mousePosition;
-                EditorUtility.DisplayPopupMenu(new Rect(mousePosition.x, mousePosition.y, 0, 0), "Window/MyProject", null);
+                EditorUtility.DisplayPopupMenu(new Rect(mousePosition.x, mousePosition.y, 0, 0), "Window/MyProjectMenu", null);
                 Event.current.Use();
             }
         }
